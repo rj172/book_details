@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title> All book Details </title>
+        <style type = "text/css">
+            #t{
+              width:60%;
+            }
+            body
+            {
+                background-color: lightcyan;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <h3> All Book Details </h3>
+        <table id="t" border = "1" cellpadding="10px" cellspacing="10px" align = "center">
+            <tr>
+                    <td><b>BOOK CODE</b></td>
+                    <td><b>BOOK NAME</b></td>
+                    <td><b>BOOK PRICE</b></td>
+                    <td><b>BOOK PAGES</b></td>
+                    <td><b>BOOK PUBLICATIONS</b></td>
+                    <td><b>BOOK DESCRIPTION</b></td>
+                
+            </tr>
+            {%for book in book_info %}
+        
+            <tr>
+                
+                <td>{{book.BCode}}</td>
+                <td>{{book.BTitle}}</td>
+                <td>{{book.BPrice}}</td>
+                <td>{{book.BPages}}</td>
+                <td>{{book.BPub}}</td>
+                <td>{{book.BDesc}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

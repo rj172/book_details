@@ -1,0 +1,140 @@
+<<!DOCTYPE html>
+<html>
+<head>
+    <title> Search Books </title>
+    <script type="text/javascript">
+        function searchbook()
+        {
+            var xmlhttp;
+            if(window.XMLHttpRequest)
+            {
+                xmlhttp = new XMLHttpRequest();
+            }
+            else
+            {
+                alert("Ajax is not supported by web browser");
+            }
+
+            xmlhttp.onreadystatechange = function(){
+                if(xmlhttp.readyState === 4 && xmlhttp.status === 200)
+                {
+                    document.getElementById("divRS").innerHTML = xmlhttp.responseText;
+                }
+            };
+            
+            var query = document.getElementById('taQuery').value;
+        
+            xmlhttp.open("GET", '/searchBypage?query='+query, true);
+            xmlhttp.send();
+        }
+        function searchbookbyprice()
+        {
+            var xmlhttp;
+            if(window.XMLHttpRequest)
+            {
+                xmlhttp = new XMLHttpRequest();
+            }
+            else
+            {
+                alert("Ajax is not supported by web browser");
+            }
+
+            xmlhttp.onreadystatechange = function(){
+                if(xmlhttp.readyState === 4 && xmlhttp.status === 200)
+                {
+                    document.getElementById("divRS").innerHTML = xmlhttp.responseText;
+                }
+            };
+            var query = document.getElementById('taQuery1').value;
+        
+            xmlhttp.open("GET", '/searchByprice?query='+query, true);
+            xmlhttp.send();
+        }
+        function searchbookbyname()
+        {
+            var xmlhttp;
+            if(window.XMLHttpRequest)
+            {
+                xmlhttp = new XMLHttpRequest();
+            }
+            else
+            {
+                alert("Ajax is not supported by web browser");
+            }
+
+            xmlhttp.onreadystatechange = function(){
+                if(xmlhttp.readyState === 4 && xmlhttp.status === 200)
+                {
+                    document.getElementById("divRS").innerHTML = xmlhttp.responseText;
+                }
+            };
+            
+            var query = document.getElementById('taQuery2').value;
+            
+            xmlhttp.open("GET", '/searchBytitle?query='+query, true);
+            xmlhttp.send();
+        }
+        function show()
+        {
+            var query = document.getElementById('taQuery1').value;
+            document.getElementById('showrange').value = query;   
+        }
+        function show1()
+        {
+            var query = document.getElementById('taQuery').value;
+            document.getElementById('showrange1').value = query;   
+        }
+    </script>
+    <style type ="text/css">
+        #d1,#d2,#d3{
+            border-color:black;
+            margin-bottom: 5px;
+            
+            background-color: rgb(122, 219, 74);
+            padding: 5px; 
+        }
+        #divRS
+        {
+            background-color: lightgray;
+
+        }
+        body
+            {
+                background-color: cyan;
+            }
+        
+    </style>
+</head>
+<body>
+    <div id="d1">
+    <h3>Sort by number of pages less than</h2>
+    <input type="range" max = "2000" id="taQuery" onmousemove = "show1();"/>
+    <br/>
+    <input type = "text" id="showrange1" readonly/>
+    
+    <input type="submit" onclick="searchbook();"/>
+    </div>
+    <div id = "d2">
+
+    <h3>sort by price less than</h3>    
+    <input type ="range" value="0" max ="5000" id="taQuery1" onmousemove="show();" />
+    <br/>
+    <input type = "text" id="showrange" readonly/>
+    <input type="submit" onclick="searchbookbyprice();"/>
+    </div id = "d3">
+    <br/>
+     <div id="d3">
+    <h3>search by title</h3>     
+    <textarea id="taQuery2" >
+    </textarea>
+    <br/>
+    <input type="submit" onclick="searchbookbyname();"/>
+    </div>
+    <hr/>
+    
+    <div id='divRS'>
+        Result will be shown here
+    </div>
+    
+</body>
+</html>
